@@ -10,32 +10,26 @@
 </head>
 <body>
  
-<div class="topo">
+<!-- TOPO  -->
+<header>
     <p>BuzzQuizz</p>
-</div>
+</header>
 <div class="conteudo">
 
 <div class="seusquizzes">
     <div class="textinho">
         Você não criou nenhum quizz ainda :(
     </div>
-    <div class="botao">
+    <div onclick="createQuizz()" class="botao">
         Criar Quizz
     </div>
 </div>
-<div class="quizzes">
-
-
-
-
-
-
-<header><h1>BuzzQuizz</h1></header>
-
+<div class="quizzes"></div>
+</div>
 <!-- div com todas as páginas para criar quizz  -->
 <div class="create-quizz-page"> 
     <!-- pagina para inserir os dados do quizz  -->
-    <div class="create-quizz-page1">
+    <div class="create-quizz-page1 escondido">
         <h1>Comece pelo começo</h1>
         <div class="quizz-data">
             <input class="quizz-title" placeholder="Título do seu quizz" type="text"/> <!-- min 20 e max 65 caracteres  -->
@@ -46,7 +40,7 @@
     <button onclick="goToPage2Quizz()">Prosseguir pra criar perguntas</button>
 
     <!-- pagina para inserir as perguntas -->
-    <div class="create-quizz-page2 escondido">
+    <div class="create-quizz-page2"  style="display: none;">
         <h1>Crie suas perguntas</h1>
         <div class="pergunta" data-identifier="question">
             <h2>Pergunta 1</h2>
@@ -84,7 +78,7 @@
     </div>
 
     <!-- pagina para inserir o level que o jogador chegou -->
-    <div class="create-quizz-page3 escondido">
+    <div class="create-quizz-page3"  style="display: none;">
         <h1>Agora, decida os níveis!</h1>
         <div class="level">
             <h1>Nível 1</h1>
@@ -105,7 +99,7 @@
     </div>
 
    <!-- Quizz pronto, página com opção para acessar o Quizz -->
-    <div class="create-quizz-page4 escondido">
+    <div class="create-quizz-page4" style="display: none;">
         <h1>Seu quizz está pronto!</h1>
         <img src="" alt="">
         <button onclick="goToCreatedQuizz()">Acessar Quizz</button>
@@ -114,8 +108,6 @@
         </div>
 </div>
 
-
-</div>
 </div>
  
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

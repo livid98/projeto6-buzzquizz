@@ -26,3 +26,12 @@ for(let i=0; qzz>i; i++){
      getquizzes.innerHTML = getquizzes.innerHTML + quizz;
     }
 }
+
+//botão criar Quizz - redireciona pra pagina criar quizz
+function createQuizz() {
+    document.querySelector(".conteudo").style.display = "none";
+    document.querySelector(".seusquizzes").style.display = "none";
+    document.querySelector(".quizzes").style.display = "none";
+    document.querySelector(".create-quizz-page1").classList.remove("escondido");
+    
+}
