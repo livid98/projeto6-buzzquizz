@@ -29,10 +29,11 @@ for(let i=0; qzz>i; i++){
 
 //botão criar Quizz - redireciona pra pagina criar quizz
 function createQuizz() {
-    document.querySelector(".conteudo").style.display = "none";
+    document.querySelector(".conteudo").style.display = "none"; // Seleciona classe .conteudo e adiciona "Display: none" no css
     document.querySelector(".seusquizzes").style.display = "none";
     document.querySelector(".quizzes").style.display = "none";
     document.querySelector(".create-quizz-page1").classList.remove("escondido");
+    // remove a classe "escondido" que estava junto com a classe .create-quizz-page1
 }
 
 //TESTAR SE FOI RECEBIDO UM LINK NA IMAGEM
@@ -46,27 +47,32 @@ function checkUrl(str){
     return !!pattern.test(str);  
 }
 //CHECAR SE OS DADOS RECEBIDOS ESTÃO COM VALORES CERTOS, SALVAR E DIRECIONAR PARA A PRÓXIMA MÁGINA
+let quizzObject = {title: null, image: null, questions: [], levels: []};
+
 function goToPage2Quizz() {
-    quizzObject.title = document.querySelector(".quizz-data .quizz-title").value;
-    quizzObject.image = document.querySelector(".quizz-data .url-quizz)").value;
-    quantity.questions = document.querySelector(".quizz-data .questions-quantity").value;
-    quantity.levels = document.querySelector(".quizz-data .level-quantity").value;
+    quizzObject.title = document.querySelector(".create-quizz-page1 input:first-child").value;
+    quizzObject.image = document.querySelector(".create-quizz-page1 input:nth-child(2)").value;
+    quizzObject.questions = document.querySelector(".create-quizz-page1 input:nth-child(3)").value;
+    quizzObject.levels = document.querySelector(".create-quizz-page1 input:nth-child(4)").value;
 
     if ((quizzObject.title.length > 19 && quizzObject.title.length < 66) && 
-        (checkUrl(quizzObject.image)) && (quantity.questions > 2) && (quantity.levels > 1)) {
-        createQuestions();}
-
-    if (!(quizzObject.title.length >= 20 && form.title.length <= 65)) {
+        (checkUrl(quizzObject.image)) && (quizzObject.questions > 2) && (quizzObject.levels > 1)) {
+        createQuestions();}//Se os requisitos estiverem certos, vai chamar a função de criar perguntas
+    
+    //Caso algum dos parametros não estiverem certos, vai aparecer um alert
+    if (!(quizzObject.title.length > 19 && quizzObject.title.length < 66)) {
         alert("Titudo do Quizz deve ter entre 20 e 65 caracteres");}
 
     else if (!(checkUrl(quizzObject.image))) {
         alert("Isso não é um link de imagem");}
 
-    else if (quantity.questions < 3) {
+    else if (!(quizzObject.questions > 2)) {
         alert("O Quizz deve ter no mínimo 3 perguntas");}
 
-    else if (quantity.levels < 2) {
+    else if (!(quizzObject.levels > 1)) {
         alert("O Quizz deve ter no mínimo 2 níveis");}  
 }
 
-function createQuestions(){}
+function createQuestions(){
+    alert("funcionou");
+}
