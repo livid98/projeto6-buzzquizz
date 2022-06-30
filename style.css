@@ -61,7 +61,138 @@ font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, O
 
 @media (max-width: 1100px){
 
+}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*------------------------------------------------------------------------------------------------------------------------------*/
+/*PARA DESKTOP*/
+/*------------------------------------------------------------------------------------------------------------------------------*/
+
+header{
+    z-index: 1;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 69px;
+    background-color:  #EC362D;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header h1{
+    font-size: 37px;
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #fff;
+}
+
+/*PAGINA 1 DA CRIAÇÃO DE QUIZZ*/
+/*TAMANHO TOTAL DA PAGINA = 1440*/
+/*BOTÃO: 26%*/
+/*ESPAÇO PERGUNTAS: 42%*/
+.create-quizz-page {
+    position: relative;
+    top: 70px;
+    background-color: #E5E5E5;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.quizz-data {
+    margin-top: 27px;
+    height: 256px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.quizz-data input {
+    width: 564px;
+    height: 46px;
+    margin-bottom: 9px;
+    padding-left: 14px;
+    text-align: left;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 400;
+    border-radius: 5px;
+    border: 1px solid #D1D1D1;
+    box-sizing: border-box;
+}
+
+.create-quizz-page1, .create-quizz-page2, .create-quizz-page3, .create-quizz-page4{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-quizz-page1 h1, .create-quizz-page2 h1, .create-quizz-page3 h1, .create-quizz-page4 h1{
+    margin-top: 71px;
+    font-size: 23px;
+    font-weight: 700;
+    color: #000000;
+}
+
+
+.create-quizz-page1 button, .create-quizz-page2 button, .create-quizz-page3 button, .create-quizz-page4 button{
+    background: #EC362D;
+    height: 54px;
+    width: 369px;
+    text-align: center;
+    border: #EC362D;
+    border-radius: 15px;
+    margin-top: 85px;
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+    transition: 0.4s;
+}
+
+button:hover{
+    background: #bb0b01;
+    border: #bb0b01;
+    cursor: pointer;
+}
+
+.goToHome button{
+    background-color: transparent;
+    color:#818181;
+    font-size: 21px;
+    font-weight: 400;
+    align-items: center;
+    justify-content: center;
+}
+
+/*ESCONDER ELEMENTOS*/
+.escondido {
+    display: none;
 }
