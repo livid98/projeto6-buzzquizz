@@ -78,8 +78,8 @@ function goToPage2Quizz() {
 function createQuestions(){
     document.querySelector(".create-quizz-page1").classList.add("escondido");
     document.querySelector(".create-quizz-page2").classList.remove("escondido");
-    const renderQuestions = document.querySelector(".create-questions")
-    renderQuestions.innerHTML +=`
+    const renderQuestion1 = document.querySelector(".create-questions")
+    renderQuestion1.innerHTML +=`
     <p>Pergunta 1</p>
     <div class="questions-box">
         <input class="question-text" type="text" placeholder="Texto da pergunta" />
@@ -102,8 +102,47 @@ function createQuestions(){
     <div class="wrong-ansewer">
         <input class="ansewer-text" type="text" placeholder="Resposta incorreta 3"/>
         <input class="url-resposta" type="url" placeholder="URl da imagem 3" />
-    </div>`
+    </div>
+    `
+
+    renderNextQuestions = document.querySelector(".clickNextQuestion")
+    for (let i = 0; i < (quizzObject.questions); i++){
+        alert (quizzObject.questions);
+        renderNextQuestions.innerHTML += ` 
+            <div class="nextQuestion"><p class="question-text">Pergunta ${i + 2}</p>
+            <ion-icon name="create-outline" class="editButton" onclick="nextQuestion(this, 'question-${i + 1}')"></ion-icon></div>
+            <div class="questions-box">
+                <input id="question-text" placeholder="Texto da pergunta"></input>
+                <input id="question-color" placeholder="Cor de fundo da pergunta"></input>
+            </div>
+            <p>Resposta correta</p>
+            <div class="right-ansewer-box">
+            <input class="ansewer-text" type="text" placeholder="Resposta correta"  />
+            <input class="url-resposta" type="url" placeholder="URl da imagem" /></div>
+            
+            `
+
+
+        for (let j = 0; j < 4; j++) {
+            let answerPosition = document.querySelector(`.question-${i + 1}`);
+            if (j === 0) {
+                answerPosition.innerHTML += `
+            <div>
+                <input id="question-answer-${j + 1}" placeholder="Resposta Correta"></input>
+                <input id="question-url-${j + 1}" placeholder="URL da imagem"></input>
+            </div>
+            `
+            }
+            else {
+                answerPosition.innerHTML += `
+            <div>
+                <input id="question-answer-${j + 1}" placeholder="Resposta Incorreta"></input>
+                <input id="question-url-${j + 1}" placeholder="URL da imagem"></input>
+            </div>
+            `
+            }
+        }
+    }
+
 }
-
-
-
+// FUNÇÃO EDITAR PERGUNTAS ESCONDIDA
