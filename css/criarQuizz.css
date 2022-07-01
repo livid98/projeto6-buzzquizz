@@ -43,7 +43,7 @@
     color: black;
 }
 
-.newQuestion h2{
+.newQuestion p{
     font-size: 20px;
     font-weight: 700;
     color: black;
@@ -85,7 +85,7 @@
 }
 
 
-.create-quizz-page1 button, .create-quizz-page2 button, .create-quizz-page3 button, .create-quizz-page4 button{
+.create-quizz-page1 button, .create-quizz-page2 button, .create-quizz-page3 button, .create-quizz-page4 button, .create-questions button{
     background: #EC362D;
     height: 54px;
     width: 369px;

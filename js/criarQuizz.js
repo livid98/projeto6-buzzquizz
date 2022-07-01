@@ -49,6 +49,7 @@ function createQuestions(){
     document.querySelector(".create-quizz-page1").classList.add("escondido");
     document.querySelector(".create-quizz-page2").classList.remove("escondido");
     const renderQuestions = document.querySelector(".create-questions")
+    //CRIAR PERGUNTA 1 COM OS INPUTS NA TELA
     renderQuestions.innerHTML +=`
     <p>Pergunta 1</p>
     <div class="questions-box">
@@ -72,5 +73,20 @@ function createQuestions(){
     <div class="wrong-ansewer">
         <input class="ansewer-text" type="text" placeholder="Resposta incorreta 3"/>
         <input class="url-resposta" type="url" placeholder="URl da imagem 3" />
-    </div>`
+    </div>`;
+    
+    //LAÇO PARA CRIAR AS QUESTÕES QUE ESTÃO COM INPUTS OCULTOS
+    for (let i = 0; i < (quizzObject.questions - 1); i++) {
+        renderQuestions.innerHTML += `
+            <div class="nextQuestion" data-identifier="expand">
+                <div class="newQuestion">
+                    <p>Pergunta ${i+2}</p>
+                    <ion-icon name="create-outline" onclick="editQuestion(this)"></ion-icon>
+                </div>
+            </div>`;
+    }
+
+    renderQuestions.innerHTML += `
+        <button onclick="goToPage3Quizz()">Prosseguir pra criar níveis</button>`;
+    
 }
