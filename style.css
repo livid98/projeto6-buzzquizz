@@ -137,7 +137,7 @@ header p{
 
 
 
-
+/*QUIZ PAGINA CRIAR PERGUNTAS*/
 .create-quizz-page {
     padding-top: 71px;
     position: relative;
@@ -149,14 +149,14 @@ header p{
     flex-direction: column;
 }
 
-.quizz-data {
+.quizz-data, .create-questions {
     margin-top: 27px;
     height: 256px;
     display: flex;
     flex-direction: column;
     align-items: center;  
 }
-.quizz-data input {
+.quizz-data input, .questions-box input, .right-ansewer-box input, .wrong-ansewer input {
     width: 564px;
     height: 46px;
     margin-bottom: 9px;
@@ -168,6 +168,44 @@ header p{
     border-radius: 5px;
     border: 1px solid #D1D1D1;
     box-sizing: border-box;
+}
+.create-questions{
+    padding-top: 28px;
+    width: 100%;
+    height: 100%;
+}
+
+.create-questions p{
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+}
+
+.newQuestion h2{
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+}
+.newQuestion {
+    width: 564px;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.newQuestion ion-icon{
+    color: #000000;
+    height: 23px;
+    width: 26px;
+}
+.newQuestion ion-icon:hover{
+    cursor: pointer;
+}
+.questions-box, .right-ansewer-box, .wrong-ansewer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
 }
 
 .create-quizz-page1, .create-quizz-page2, .create-quizz-page3, .create-quizz-page4{

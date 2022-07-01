@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="reset.css"> 
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </head>
 <body>
  
@@ -38,47 +41,27 @@
             <input class="level-quantity" id="level-quantity" placeholder="Quantidade de níveis do quizz" type="number"/><!-- min 2 níveis  -->
         </div>
     <button onclick="goToPage2Quizz()">Prosseguir pra criar perguntas</button>
-
-    <!-- pagina para inserir as perguntas -->
-    <div class="create-quizz-page2"  style="display: none;">
-        <h1>Crie suas perguntas</h1>
-        <div class="pergunta" data-identifier="question">
-            <h2>Pergunta 1</h2>
-            <div class="cabecalho-pergunta">
-                <input class="texto-pergunta" type="text" placeholder="Texto da pergunta" minlength="20" />
-                <input class="cor-pergunta" type="color" placeholder="Cor de fundo da pergunta" />
-            </div>
-            <h2>Resposta correta</h2>
-            <div class="resposta-correta">
-                <input class="texto-resposta" type="text" placeholder="Resposta correta" required="required" />
-                <input class="url-resposta" type="url" placeholder="URl da imagem" />
-            </div>
-            <h2>Respostas incorretas</h2>
-            <div class="resposta">
-                <input class="texto-resposta" type="text" placeholder="Resposta incorreta 1" required="required" />
-                <input class="url-resposta" type="url" placeholder="URl da imagem 1" />
-            </div>
-            <div class="resposta">
-                <input class="texto-resposta" type="text" placeholder="Resposta incorreta 2" required="required" />
-                <input class="url-resposta" type="url" placeholder="URl da imagem 2" />
-            </div>
-            <div class="resposta">
-                <input class="texto-resposta" type="text" placeholder="Resposta incorreta 3" required="required" />
-                <input class="url-resposta" type="url" placeholder="URl da imagem 3" />
-            </div>
-        </div>
-        <div class="nova-pergunta" data-identifier="expand">
-            <h2>Pergunta 2</h2>
-            <img class="botaoEditar" src="img/editar.png" alt="Botão editar" onclick="abrirNovaPergunta(this)">
-        </div>
-        <div class="nova-pergunta" data-identifier="expand">
-            <h2>Pergunta 3</h2>
-            <img class="botaoEditar" src="img/editar.png" alt="Botão editar" onclick="abrirNovaPergunta(this)">
-        </div>
     </div>
 
+    <!-- pagina para inserir as perguntas -->
+    <div class="create-quizz-page2 escondido">
+        <h1>Crie suas perguntas</h1>
+        <div class="create-questions">
+        </div>
+        <!-- Editar pergunta 2 e pergunta 3 clicando no icone  -->
+        <div class="nextQuestion" data-identifier="expand">
+            <div class="newQuestion">
+                <h2>Pergunta 2</h2>
+                <ion-icon name="create-outline" class="botaoEditar" onclick="nextQuestion(this)" data-identifier="expand"></ion-icon>
+            </div>
+            <div class="newQuestion">
+                <h2>Pergunta 3</h2>
+                <ion-icon name="create-outline" class="botaoEditar" onclick="nextQuestion(this)" data-identifier="expand"></ion-icon>
+            </div>
+        </div>
+
     <!-- pagina para inserir o level que o jogador chegou -->
-    <div class="create-quizz-page3"  style="display: none;">
+    <div class="create-quizz-page3 escondido"  style="display: none;">
         <h1>Agora, decida os níveis!</h1>
         <div class="level">
             <h1>Nível 1</h1>
@@ -99,7 +82,7 @@
     </div>
 
    <!-- Quizz pronto, página com opção para acessar o Quizz -->
-    <div class="create-quizz-page4" style="display: none;">
+    <div class="create-quizz-page4 escondido" style="display: none;">
         <h1>Seu quizz está pronto!</h1>
         <img src="" alt="">
         <button onclick="goToCreatedQuizz()">Acessar Quizz</button>
@@ -108,7 +91,7 @@
         </div>
 </div>
 
-</div>
+
  
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
  <script src="projeto.js"></script>   

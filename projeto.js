@@ -1,17 +1,18 @@
 let quizz;
 buscarquizz();
-
+//BUSCAR QUIZZES EXISTENTES NA API
 function buscarquizz(){
 const promessa = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
 promessa.then(dadosVoltou);
 }
+//INFORMAR QUE OS DADOS CHEGARAM
 function dadosVoltou(resposta){
 console.log("Os dados chegaram!");
 console.log(resposta);
 quizz = resposta.data;
 renderizarquizzes(resposta);
 }
-
+//FUNÇÃO PARA RENDERIZAR OS QUIZZES NA TELA INICIAL
 function renderizarquizzes(resposta){
 const getquizzes = document.querySelector(".quizzes");   
 console.log(resposta);
@@ -73,6 +74,36 @@ function goToPage2Quizz() {
         alert("O Quizz deve ter no mínimo 2 níveis");}  
 }
 
+//CASO O USUÁRIO RESPONDA CORRETAMENTE, A PÁGINA DE CRIAR PERGUNTAS SERÁ ABERTA
 function createQuestions(){
-    alert("funcionou");
+    document.querySelector(".create-quizz-page1").classList.add("escondido");
+    document.querySelector(".create-quizz-page2").classList.remove("escondido");
+    const renderQuestions = document.querySelector(".create-questions")
+    renderQuestions.innerHTML +=`
+    <p>Pergunta 1</p>
+    <div class="questions-box">
+        <input class="question-text" type="text" placeholder="Texto da pergunta" />
+        <input class="question-color" type="color" placeholder="Cor de fundo da pergunta" />
+    </div>
+    <p>Resposta correta</p>
+    <div class="right-ansewer-box">
+        <input class="ansewer-text" type="text" placeholder="Resposta correta"  />
+        <input class="url-resposta" type="url" placeholder="URl da imagem" />
+    </div>
+    <p>Respostas incorretas</p>
+    <div class="wrong-ansewer">
+        <input class="ansewer-text" type="text" placeholder="Resposta incorreta 1"/>
+        <input class="url-resposta" type="url" placeholder="URl da imagem 1" />
+    </div>
+    <div class="wrong-ansewer">
+        <input class="ansewer-text" type="text" placeholder="Resposta incorreta 2"/>
+        <input class="url-resposta" type="url" placeholder="URl da imagem 2" />
+    </div>
+    <div class="wrong-ansewer">
+        <input class="ansewer-text" type="text" placeholder="Resposta incorreta 3"/>
+        <input class="url-resposta" type="url" placeholder="URl da imagem 3" />
+    </div>`
 }
+
+
+
