@@ -7,10 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="reset.css"> 
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </head>
 
 <body>
+ 
+<!-- TOPO  -->
+<header>
+    <p>BuzzQuizz</p>
+</header>
+<div class="conteudo">
 
     <div class="topo">
         <p>BuzzQuizz</p>
@@ -44,6 +53,78 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="projeto.js"></script>
+    <div onclick="createQuizz()" class="botao">
+        Criar Quizz
+    </div>
+</div>
+<div class="quizzes"></div>
+</div>
+<!-- div com todas as páginas para criar quizz  -->
+<div class="create-quizz-page"> 
+    <!-- pagina para inserir os dados do quizz  -->
+    <div class="create-quizz-page1 escondido">
+        <h1>Comece pelo começo</h1>
+        <div class="quizz-data">
+            <input class="quizz-title" id="quizz-title" placeholder="Título do seu quizz" type="text"/> <!-- min 20 e max 65 caracteres  -->
+            <input class="url-quizz" id="url-quizz" placeholder="URL da imagem do seu quizz" type="url"/>
+            <input class="questions-quantity" id="questions-quantity" placeholder="Quantidade de perguntas do quizz" type="number"/><!-- min 3 perguntas  -->
+            <input class="level-quantity" id="level-quantity" placeholder="Quantidade de níveis do quizz" type="number"/><!-- min 2 níveis  -->
+        </div>
+    <button onclick="goToPage2Quizz()">Prosseguir pra criar perguntas</button>
+    </div>
+
+    <!-- pagina para inserir as perguntas -->
+    <div class="create-quizz-page2 escondido">
+        <h1>Crie suas perguntas</h1>
+        <div class="create-questions">
+        </div>
+        <!-- Editar pergunta 2 e pergunta 3 clicando no icone  -->
+        <div class="nextQuestion" data-identifier="expand">
+            <div class="newQuestion">
+                <h2>Pergunta 2</h2>
+                <ion-icon name="create-outline" class="botaoEditar" onclick="nextQuestion(this)" data-identifier="expand"></ion-icon>
+            </div>
+            <div class="newQuestion">
+                <h2>Pergunta 3</h2>
+                <ion-icon name="create-outline" class="botaoEditar" onclick="nextQuestion(this)" data-identifier="expand"></ion-icon>
+            </div>
+        </div>
+
+    <!-- pagina para inserir o level que o jogador chegou -->
+    <div class="create-quizz-page3 escondido"  style="display: none;">
+        <h1>Agora, decida os níveis!</h1>
+        <div class="level">
+            <h1>Nível 1</h1>
+            <input class="level-name" placeholder="Título do nível" type="text"/>
+            <input class="right-quantity-level" placeholder="% de acerto mínima" type="number"/>
+            <input class="url-image-level" placeholder="URL da imagem do nível" type="url"/>
+            <input class="text-description-level" placeholder="Descrição do nível" type="text"></input>
+        </div>
+        <div class="novo-level">
+            <h1>Nível 2</h1>
+            <ion-icon name="create-outline" onclick="editlevel()"></ion-icon>
+        </div>
+        <div class="novo-level">
+            <h1>Nível 3</h1>
+            <ion-icon name="create-outline" onclick="editlevel()"></ion-icon>
+        </div>
+        <button class="finish-quizz" onclick="finishQuizz()"><h1>Finalizar Quizz</h1></button>
+    </div>
+
+   <!-- Quizz pronto, página com opção para acessar o Quizz -->
+    <div class="create-quizz-page4 escondido" style="display: none;">
+        <h1>Seu quizz está pronto!</h1>
+        <img src="" alt="">
+        <button onclick="goToCreatedQuizz()">Acessar Quizz</button>
+        <div class="goToHome">
+        <button onclick="goToHome()">Voltar pra home</button></div>
+        </div>
+</div>
+
+
+ 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+ <script src="projeto.js"></script>   
 </body>
 
 </html>
