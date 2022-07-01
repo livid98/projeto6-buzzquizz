@@ -9,7 +9,7 @@ body, html{height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
 }
 .hidden{
     display: none !important;
@@ -34,6 +34,28 @@ z-index: 1;
     height: 227px;
     background: #00000091;
     position: relative;
+}
+.img1{
+    width: 100%;
+    height: 227px;
+}
+.textoquizz{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 54px;
+    color: #ffffff;
+    position: absolute;
+    font-size: 39px;
+}
+
+.caixapergunta{width: 759px;
+    height: 676px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #B9B9B9;
 }
 .conteudo{width: 100%;
  height: 100vh;
@@ -111,7 +133,8 @@ font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, O
 }
 
 .texto{font-size: 19px;
-padding-top: 80px;    
+align-items: center;
+padding-top: 80px;   
 position: relative;
 color: #ffffff;
 }
