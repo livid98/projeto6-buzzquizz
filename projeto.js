@@ -1,4 +1,5 @@
 let quizz;
+let selectedQuizz;
 buscarquizz();
 
 function buscarquizz(){
@@ -19,10 +20,26 @@ const qzz = resposta.data.length;
 for(let i=0; qzz>i; i++){
     const title = (resposta.data[i].title);
     const image = (resposta.data[i].image);
-    let quizz = `<div class= "caixinha">
-    <div class="img"><img class="img" src="${image}" alt="">
+    const box = document.createElement("div");
+    box.className = "caixinha"
+    let quizz = `
+    <div class="img"><img  class="img" src="${image}" alt="">
     <div class="texto"><p>${title}</p></div></div>
-    </div>`;
-     getquizzes.innerHTML = getquizzes.innerHTML + quizz;
+    `;
+     box.innerHTML = quizz;
+     box.addEventListener("click",function(){
+        tela2(i)
+     });
+     getquizzes.appendChild(box);
     }
 }
+
+ function tela2(index){
+  selectedQuizz= quizz[index];
+  const conteudo = document.querySelector(".conteudo");    
+  conteudo.classList.add("hidden");
+  const tela2element = document.querySelector(".tela2"); 
+  tela2element.classList.remove("hidden");
+  const telaBox = document.querySelector(".tela-box");
+  telaBox.innerHTML = ` <p>${selectedQuizz.title} </p>   `;
+ }
