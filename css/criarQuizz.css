@@ -1,0 +1,120 @@
+/*QUIZ PAGINA CRIAR PERGUNTAS*/
+.create-quizz-page {
+    padding-top: 71px;
+    position: relative;
+    background-color: #E5E5E5;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.quizz-data, .create-questions {
+    margin-top: 27px;
+    height: 256px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+}
+.quizz-data input, .questions-box input, .right-ansewer-box input, .wrong-ansewer input {
+    width: 564px;
+    height: 46px;
+    margin-bottom: 9px;
+    padding-left: 14px;
+    text-align: left;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 400;
+    border-radius: 5px;
+    border: 1px solid #D1D1D1;
+    box-sizing: border-box;
+}
+.create-questions{
+    padding-top: 28px;
+    width: 100%;
+    height: 100%;
+}
+
+.create-questions p{
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+}
+
+.newQuestion h2{
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+}
+.newQuestion {
+    width: 564px;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.newQuestion ion-icon{
+    color: #000000;
+    height: 23px;
+    width: 26px;
+}
+.newQuestion ion-icon:hover{
+    cursor: pointer;
+}
+.questions-box, .right-ansewer-box, .wrong-ansewer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+}
+
+.create-quizz-page1, .create-quizz-page2, .create-quizz-page3, .create-quizz-page4{
+    z-index: 8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-quizz-page1 h1, .create-quizz-page2 h1, .create-quizz-page3 h1, .create-quizz-page4 h1{
+    margin-top: 71px;
+    font-size: 23px;
+    font-weight: 700;
+    color: #000000;
+}
+
+
+.create-quizz-page1 button, .create-quizz-page2 button, .create-quizz-page3 button, .create-quizz-page4 button{
+    background: #EC362D;
+    height: 54px;
+    width: 369px;
+    text-align: center;
+    border: #EC362D;
+    border-radius: 15px;
+    margin-top: 85px;
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+    transition: 0.4s;
+}
+
+button:hover{
+    background: #bb0b01;
+    border: #bb0b01;
+    cursor: pointer;
+}
+
+.goToHome button{
+    background-color: transparent;
+    color:#818181;
+    font-size: 21px;
+    font-weight: 400;
+    align-items: center;
+    justify-content: center;
+}
+
+/*ESCONDER ELEMENTOS*/
+.escondido{
+    display: none;
+}
