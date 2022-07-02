@@ -127,6 +127,41 @@ function editQuestion(question) {
 //MOSTRARA PAGINA DE CRIAR NÍVEIS
 function goToPage3Quizz(){
     document.querySelector(".create-quizz-page2").classList.add("escondido");
-    document.querySelector(".create-quizz-page3").classList.remove("escondido");
+    const renderCreateLevel = document.querySelector(".create-quizz-page3")
+    renderCreateLevel.classList.remove("escondido");
+    renderCreateLevel.innerHTML += `
+        <p>Agora, decida os níveis!</p>
+        <div class="level">
+            <p>Nível 1</p>
+            <input class="level-name" placeholder="Título do nível" type="text" />
+            <input class="media" placeholder="% de acerto mínima" type="number" />
+            <input class="url-image-level" placeholder="URL da imagem do nível" type="url" />
+            <input class="text-description-level" placeholder="Descrição do nível" type="text" />
+        </div>`;
+        
+        for (let i = 0; i < (quizzObject.levels - 1); i++) {
+        renderCreateLevel.innerHTML +=`
+        <div class="newLevel">
+            <div class ="numberLevel">
+                <p>Nível ${i+2}</p>
+                <ion-icon name="create-outline" onclick="editlevel(this)"></ion-icon>
+            </div>
+            <div class="inputsLevelHidden escondido">
+                <input class="level-name" placeholder="Título do nível" type="text" />
+                <input class="media" placeholder="% de acerto mínima" type="number" />
+                <input class="url-image-level" placeholder="URL da imagem do nível" type="url" />
+                <input class="text-description-level" placeholder="Descrição do nível" type="text" />
+            </div>  
+        </div>`;
+        }
+        renderCreateLevel.innerHTML +=`
+        <button class="finish-quizz" onclick="finishQuizz()">Finalizar Quizz</button>`;
+}
+//EXPANDIR AO CLICAR NO BOTÃO DE EDITAR LEVEL
+function editlevel(level){
+    const divAvo = level.parentNode.parentNode;
+    const divEscondida = divAvo.childNodes;
+    divEscondida[3].scrollIntoView();
+    divEscondida[3].classList.remove("escondido");
 
 }

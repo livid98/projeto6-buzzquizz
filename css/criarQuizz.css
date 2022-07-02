@@ -17,7 +17,7 @@
     flex-direction: column;
     align-items: center;  
 }
-.quizz-data input, .questions-box input, .right-ansewer-box input, .wrong-ansewer input {
+.quizz-data input, .questions-box input, .right-ansewer-box input, .wrong-ansewer input, .level input {
     width: 564px;
     height: 46px;
     margin-bottom: 9px;
