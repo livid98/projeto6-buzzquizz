@@ -116,5 +116,5 @@ button:hover{
 
 /*ESCONDER ELEMENTOS*/
 .escondido{
-    display: none;
+    display: none !important;
 }

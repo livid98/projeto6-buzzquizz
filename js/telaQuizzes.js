@@ -3,7 +3,7 @@ let selectedQuizz;
 buscarquizz();
 
 function buscarquizz() {
-    const promessa = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
+    const promessa = axios.get("https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes");
     promessa.then(dadosVoltou);
 }
 function dadosVoltou(resposta) {
@@ -44,5 +44,51 @@ function tela2(index) {
     const caixaImg = document.querySelector(".imgtela2");
     caixaImg.innerHTML = `<div class="imgtela2"><div class="img1"><img  class="img1" src="${selectedQuizz.image}" alt=""></div>
   <p class="textoquizz">${selectedQuizz.title}</p></div>`;
-  console.log(selectedQuizz.questions);
+    console.log(selectedQuizz.questions);
+    const caixaquestions = document.querySelector(".caixaperguntas");
+    const numperguntas = selectedQuizz.questions.length;
+    console.log(numperguntas);
+    caixaquestions.innerHTML = "";
+    let questionNumber = 0;
+    for (let item of selectedQuizz.questions) {
+        const questionBox =
+            `<div class="pergunta" style="background-color:${item.color}">${item.title}</div>`;
+   const elem = document.createElement("div");
+   elem.innerHTML = questionBox;
+   elem.className = "caixapergunta";
+   let answerNumber = 0;
+   elem.id=`q-${questionNumber}`;
+   for(let answer of item.answers){
+   const answerElement = document.createElement("div");
+   answerElement.innerHTML = ` <img width="280px" height="110px"   src="${answer.image}" alt="" srcset="">
+   <p class="resposta">${answer.text}</p>`;
+   answerElement.className = "caixinhaimg";
+   answerElement.id=`q-${questionNumber}-a-${answerNumber}`;
+   answerElement.addEventListener("click",function(){
+    respostaAction(answerElement.id)
+   })
+   elem.appendChild(answerElement);
+   answerNumber++;
+   }
+   caixaquestions.appendChild(elem);
+   questionNumber++;
+    }
+}
+const respondidas = [];
+
+function respostaAction(id){
+    const q = Number(id.split("-")[1]);
+    const resposta = `q-${q}`
+    if(!respondidas.includes(resposta)){
+        console.log(id.split("-"));
+        
+        const a = Number (id.split("-")[3]);
+        for(let i=0; i<selectedQuizz.questions[q].answers.length; i++){
+            if(i!=a){
+                document.getElementById(`q-${q}-a-${i}`).classList.add("not-selected")
+               
+            }
+        }
+        respondidas.push(resposta);    
+    }
 }
