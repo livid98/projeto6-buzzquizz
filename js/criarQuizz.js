@@ -59,20 +59,20 @@ function createQuestions(){
     <p>Resposta correta</p>
     <div class="right-ansewer-box">
         <input class="ansewer-text" type="text" placeholder="Resposta correta"  />
-        <input class="url-resposta" type="url" placeholder="URl da imagem" />
+        <input class="url-ansewer" type="url" placeholder="URl da imagem" />
     </div>
     <p>Respostas incorretas</p>
     <div class="wrong-ansewer">
         <input class="ansewer-text" type="text" placeholder="Resposta incorreta 1"/>
-        <input class="url-resposta" type="url" placeholder="URl da imagem 1" />
+        <input class="url-ansewer" type="url" placeholder="URl da imagem 1" />
     </div>
     <div class="wrong-ansewer">
         <input class="ansewer-text" type="text" placeholder="Resposta incorreta 2"/>
-        <input class="url-resposta" type="url" placeholder="URl da imagem 2" />
+        <input class="url-ansewer" type="url" placeholder="URl da imagem 2" />
     </div>
     <div class="wrong-ansewer">
         <input class="ansewer-text" type="text" placeholder="Resposta incorreta 3"/>
-        <input class="url-resposta" type="url" placeholder="URl da imagem 3" />
+        <input class="url-ansewer" type="url" placeholder="URl da imagem 3" />
     </div>`;
     
     //LAÇO PARA CRIAR AS QUESTÕES QUE ESTÃO COM INPUTS OCULTOS
@@ -83,10 +83,44 @@ function createQuestions(){
                     <p>Pergunta ${i+2}</p>
                     <ion-icon name="create-outline" onclick="editQuestion(this)"></ion-icon>
                 </div>
+            
+            <div class = "hiddenNewQuestions escondido">
+                <div class="questions-box">
+                    <input class="question-text" type="text" placeholder="Texto da pergunta" />
+                    <input class="question-color" type="color" placeholder="Cor de fundo da pergunta" />
+                </div>
+                <p  class="">Resposta correta</p>
+                <div class="right-ansewer-box">
+                    <input class="ansewer-text" type="text" placeholder="Resposta correta"  />
+                    <input class="url-ansewer" type="url" placeholder="URl da imagem" />
+                </div>
+                <p class="">Respostas incorretas</p>
+                <div class="wrong-ansewer">
+                    <input class="ansewer-text" type="text" placeholder="Resposta incorreta 1"/>
+                    <input class="url-ansewer" type="url" placeholder="URl da imagem 1" />
+                </div>
+                <div class="wrong-ansewer">
+                    <input class="ansewer-text" type="text" placeholder="Resposta incorreta 2"/>
+                    <input class="url-ansewer" type="url" placeholder="URl da imagem 2" />
+                </div>
+                <div class="wrong-ansewer">
+                    <input class="ansewer-text" type="text" placeholder="Resposta incorreta 3"/>
+                    <input class="url-ansewer" type="url" placeholder="URl da imagem 3" />
+                </div>
+                </div>
             </div>`;
     }
-
+	
     renderQuestions.innerHTML += `
-        <button onclick="goToPage3Quizz()">Prosseguir pra criar níveis</button>`;
-    
+        <button onclick="goToPage3Quizz()">Prosseguir pra criar níveis</button>`;   
 }
+
+//MONSTRAR QUESTÕES AO CLICAR NO BOTÃO DE EDITAR
+function editQuestion(question) {
+    const divAvo = question.parentNode.parentNode;
+    const divEscondida = divAvo.childNodes;
+    divEscondida[3].scrollIntoView();
+    divEscondida[3].classList.remove("escondido")
+    //question.querySelector(".hiddenNewQuestions").classList.remove("escondido");
+}
+
