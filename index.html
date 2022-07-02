@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,7 +45,7 @@
 </div>
 
 <!-- div com todas as páginas para criar quizz  -->
-<div class="create-quizz-page"> 
+<div class="create-quizz-page escondido"> 
     <!-- pagina para inserir os dados do quizz  -->
     <div class="create-quizz-page1 escondido">
         <h1>Comece pelo começo</h1>
@@ -63,13 +63,6 @@
         <h1>Crie suas perguntas</h1>
         <div class="create-questions">
         </div>
-        <!-- Editar pergunta 2 e pergunta 3 clicando no icone  
-        <div class="nextQuestion" data-identifier="expand">
-            <div class="newQuestion">
-                <h2>Pergunta 2</h2>
-                <ion-icon name="create-outline" class="botaoEditar" onclick="nextQuestion(this)" data-identifier="expand"></ion-icon>
-            </div>
-        </div>-->
 
     <!-- pagina para inserir o level que o jogador chegou -->
     <div class="create-quizz-page3 escondido"  style="display: none;">
@@ -101,8 +94,11 @@
         <button onclick="goToHome()">Voltar pra home</button></div>
         </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="js/criarQuizz.js"></script>  
 <script src="js/telaQuizzes.js"></script> 
+
 </body>
+
 </html>

@@ -3,6 +3,7 @@ function createQuizz() {
     document.querySelector(".conteudo").style.display = "none"; // Seleciona classe .conteudo e adiciona "Display: none" no css
     document.querySelector(".seusquizzes").style.display = "none";
     document.querySelector(".quizzes").style.display = "none";
+    document.querySelector(".create-quizz-page").classList.remove("escondido");
     document.querySelector(".create-quizz-page1").classList.remove("escondido");
     // remove a classe "escondido" que estava junto com a classe .create-quizz-page1
 }
@@ -120,7 +121,12 @@ function editQuestion(question) {
     const divAvo = question.parentNode.parentNode;
     const divEscondida = divAvo.childNodes;
     divEscondida[3].scrollIntoView();
-    divEscondida[3].classList.remove("escondido")
-    //question.querySelector(".hiddenNewQuestions").classList.remove("escondido");
+    divEscondida[3].classList.remove("escondido");
 }
 
+//MOSTRARA PAGINA DE CRIAR NÍVEIS
+function goToPage3Quizz(){
+    document.querySelector(".create-quizz-page2").classList.add("escondido");
+    document.querySelector(".create-quizz-page3").classList.remove("escondido");
+
+}
