@@ -269,7 +269,7 @@ function editQuestion(question) {
         }
         quizzObject.questions.push(questionObject);
     }
-
+    // ------------------------ CHECAR DADOS COLOCADOS NA SEGUNDA PÁGINA ------------------------ \\
     //O método forEach() executa uma dada função em cada elemento de um array.
     quizzObject.questions.forEach((question) => {
         let Y = 0;
@@ -278,19 +278,19 @@ function editQuestion(question) {
             quizzObject.questions = [];
             counterQuestionItens.length++;}
 
-        else if (question.answersList.length < 2 && counterQuestionItens.quantityAnsewerItens == 0) {
+        else if (counterQuestionItens.quantityAnsewerItens == 0 && !(question.answersList.length > 2)) {
             alert("Você deve colocar no mínimo uma resposta certa e uma errada");
             quizzObject.questions = [];
             counterQuestionItens.quantityAnsewerItens++;}
             
 
         question.answersList.forEach((answer) => {
-            if ((!(checkUrl(answer.image)) || answer.image == undefined) && counterQuestionItens.isUrl == 0) {
+            if (counterQuestionItens.isUrl == 0 && (answer.image == undefined || !(checkUrl(answer.image)))) {
                 alert("A imagem deve ser em formato de link url");
                 quizzObject.questions = [];
                 counterQuestionItens.isUrl++;}
             
-            else if ((answer.text == "") && counterQuestionItens.isAnswerEmpty == 0) {
+            else if (counterQuestionItens.isAnswerEmpty == 0 && (answer.text == "")) {
                 alert("Não pode haver questões sem texto");
                 quizzObject.questions = [];
                 counterQuestionItens.isAnswerEmpty++;}
@@ -353,5 +353,4 @@ function editlevel(level){
 }
 
 
-// ------------------------ CHECAR DADOS COLOCADOS NA SEGUNDA PÁGINA ------------------------ \\
 
