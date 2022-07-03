@@ -165,8 +165,47 @@ function editQuestion(question) {
 //----------------------------------------- CHECAR QUESTOÕES ------------------------------------------- \\
 
     function goToPage3Quizz() {
+
     let counterQuestionItens = {length: 0, color: 0, quantityAnsewerItens: 0, isAnswerEmpty: 0, isUrl: 0, isTrue: 0};
 
+    //CHECAR DADOS COLOCADOS NA SEGUNDA PÁGINA
+    //O método forEach() executa uma dada função em cada elemento de um array.
+    quizzObject.questions.forEach((question) => {
+        let Y = 0;
+        if (counterQuestionItens.length == 0 && !(question.title.length > 19) && !(question.title.length < 66)) {
+            alert("Os titulos das questões devem ter entre 20 e 65 caracteres");
+            quizzObject.questions = [];
+            counterQuestionItens.length++;}
+
+        else if (counterQuestionItens.quantityAnsewerItens == 0 && (question.answersList.length < 2)) {
+            alert("Você deve colocar no mínimo uma resposta certa e uma errada");
+            quizzObject.questions = [];
+            counterQuestionItens.quantityAnsewerItens++;}
+            
+
+        question.answersList.forEach((answer) => {
+            if (counterQuestionItens.isUrl == 0 && (answer.image == undefined || !(checkUrl(answer.image)))) {
+                alert("A imagem deve ser em quizzObjectato de link url");
+                quizzObject.questions = [];
+                counterQuestionItens.isUrl++;}
+            
+            else if (counterQuestionItens.isAnswerEmpty == 0 && (answer.text == "")) {
+                alert("Não pode haver questões sem texto");
+                quizzObject.questions = [];
+                counterQuestionItens.isAnswerEmpty++;}
+
+            else if (answer.isCorrectAnswer === true) {Y++;}
+         });
+        
+        if ((Y == 0) && counterQuestionItens.isTrue == 0) {
+            alert("Todas as questões devem ter uma resposta correta");
+            counterQuestionItens.isTrue++;
+            quizzObject.questions = [];
+        }
+    });
+
+
+    // COLOCAR QUESTÕES DENTRO DO OBJETO DAS PERGUNTAS E RESPOSTAS DO QUIZZ
     for (let x = 0; x < quantityQuizz.questions; x++) {
         console.log(x)
         let questionObject = {title: '', color: '', answersList: []};
@@ -269,41 +308,6 @@ function editQuestion(question) {
         }
         quizzObject.questions.push(questionObject);
     }
-    // ------------------------ CHECAR DADOS COLOCADOS NA SEGUNDA PÁGINA ------------------------ \\
-    //O método forEach() executa uma dada função em cada elemento de um array.
-    quizzObject.questions.forEach((question) => {
-        let Y = 0;
-        if (counterQuestionItens.length == 0 && !(question.title.length > 19) && !(question.title.length < 66)) {
-            alert("Os titulos das questões devem ter entre 20 e 65 caracteres");
-            quizzObject.questions = [];
-            counterQuestionItens.length++;}
-
-        else if (counterQuestionItens.quantityAnsewerItens == 0 && !(question.answersList.length > 2)) {
-            alert("Você deve colocar no mínimo uma resposta certa e uma errada");
-            quizzObject.questions = [];
-            counterQuestionItens.quantityAnsewerItens++;}
-            
-
-        question.answersList.forEach((answer) => {
-            if (counterQuestionItens.isUrl == 0 && (answer.image == undefined || !(checkUrl(answer.image)))) {
-                alert("A imagem deve ser em formato de link url");
-                quizzObject.questions = [];
-                counterQuestionItens.isUrl++;}
-            
-            else if (counterQuestionItens.isAnswerEmpty == 0 && (answer.text == "")) {
-                alert("Não pode haver questões sem texto");
-                quizzObject.questions = [];
-                counterQuestionItens.isAnswerEmpty++;}
-
-            else if (answer.isCorrectAnswer === true) {Y++;}
-         });
-        
-        if ((Y == 0) && counterQuestionItens.isTrue == 0) {
-            alert("Todas as questões devem ter uma resposta correta");
-            counterQuestionItens.isTrue++;
-            quizzObject.questions = [];
-        }
-    });
     if (quizzObject.questions.length !== 0) {
         createLevels();
     }
@@ -317,20 +321,20 @@ function createLevels(){
     renderCreateLevel.classList.remove("escondido");
     renderCreateLevel.innerHTML += `
         <p>Agora, decida os níveis!</p>
-        <div class="level">
-            <p>Nível 1</p>
+        <div id="level${1}">
+            <p>Nível ${1}</p>
             <input class="level-name" placeholder="Título do nível" type="text" />
             <input class="media" placeholder="% de acerto mínima" type="number" />
             <input class="url-image-level" placeholder="URL da imagem do nível" type="url" />
             <input class="text-description-level" placeholder="Descrição do nível" type="text" />
         </div>`;
         
-        for (let i = 0; i < (quizzObject.levels - 1); i++) {
+        for (let i = 0; i < (quantityQuizz.levels - 1); i++) {
         renderCreateLevel.innerHTML +=`
-        <div class="newLevel">
-            <div class ="numberLevel">
+        <div id="numberLevel${i+2}">
+            <div class ="namelevel">
                 <p>Nível ${i+2}</p>
-                <ion-icon name="create-outline" onclick="editlevel(this)"></ion-icon>
+                <ion-icon name="create-outline" onclick="editlevel(this, 'level${i+2}')"></ion-icon>
             </div>
             <div class="inputsLevelHidden escondido">
                 <input class="level-name" placeholder="Título do nível" type="text" />
@@ -344,13 +348,112 @@ function createLevels(){
         <button class="finish-quizz" onclick="finishQuizz()">Finalizar Quizz</button>`;
 }
 //EXPANDIR AO CLICAR NO BOTÃO DE EDITAR LEVEL
-function editlevel(level){
-    const divAvo = level.parentNode.parentNode;
+function editlevel(elemento){
+
+    const divAvo = elemento.parentNode.parentNode;
     const divEscondida = divAvo.childNodes;
     divEscondida[3].scrollIntoView();
     divEscondida[3].classList.remove("escondido");
+}
 
+//CAPTURAR DADOS COLOCADOS NOS LEVEIS
+/*
+    Para o level 0;
+        let LevelName = document.getElementById(`level${l}`).childNodes[3].value;
+        let PercentualMedia = document.getElementById(`level${l}`).childNodes[5].value;
+        let ImageLevelItem = document.getElementById(`level${l}`).childNodes[7].value;
+        let LevelDescription = document.getElementById(`level${l}`).childNodes[9].value;
+
+
+    Para leveis acima do lvl 0;
+        LevelName = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[1].value;
+        PercentualMedia = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[3].value;
+        ImageLevelItem = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[5].value;
+        LevelDescription = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[7].value;
+*/
+
+function finishQuizz() {
+    // checkar itens
+
+    let verfication = {length: 0, porcentLevel: 0, imageLevel: 0, quantMinDescription: 0, levelzero: 0};
+
+    quizzObject.levels.forEach((level) => {
+        if (verfication.length == 0 && level.title.length < 10) {
+            alert("O titulo do nivel deve ter no mínimo 10 caracteres");
+            quizzObject.levels = [];
+            verfication.length++;}
+
+        else if (verfication.porcentLevel == 0 && (level.porcentLevel < 0) || (level.porcentLevel > 100) || (level.porcentLevel === '')) {
+            alert("O valor inserido foi invalido. A % de acerto varia entre 0 e 100");
+            quizzObject.levels = [];
+            verfication.porcentLevel++;}
+
+        else if (verfication.levelzero == 0 && !level.porcentLevel.includes(0)) {
+            alert("Um dos níveis deve ter o valor 0");
+            quizzObject.levels = [];
+            verfication.levelzero++;}
+
+        else if (verfication.imageLevel == 0 && !(checkUrl(level.image))) {
+            alert("A imagem deve ser em formato link Url");
+            quizzObject.levels = [];
+            verfication.imageLevel++;}
+
+        else if (verfication.quantMinDescription == 0 && level.description.length < 30) {
+            alert("A descrição do nível deve ter no minimo 30 caracteres");
+            verfication.quantMinDescription++;
+            quizzObject.levels = [];}
+    })
+
+    //colocar valores dos inputs nos objetos
+   
+    for (let l = 1; l <= quantityQuizz.levels; l++) {
+        let levelObject = {title: null, image: null, porcentLevel: null, description: null};
+
+       if (l == 0){
+        let LevelName = document.getElementById(`level${l}`).childNodes[3].value;
+        let PercentualMedia = document.getElementById(`level${l}`).childNodes[5].value;
+        let ImageLevelItem = document.getElementById(`level${l}`).childNodes[7].value;
+        let LevelDescription = document.getElementById(`level${l}`).childNodes[9].value;
+
+        levelObject.title = LevelName;
+        levelObject.image = ImageLevelItem;
+        levelObject.porcentLevel = PercentualMedia;
+        levelObject.description = LevelDescription;
+         
+       }
+       else {
+        LevelName = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[1].value;
+        PercentualMedia = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[3].value;
+        ImageLevelItem = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[5].value;
+        LevelDescription = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[7].value;
+
+        levelObject.title = LevelName;
+        levelObject.image = ImageLevelItem;
+        levelObject.porcentLevel = PercentualMedia;
+        levelObject.description = LevelDescription; 
+       }
+
+       quizzObject.levels.push(levelObject);
+    }
+
+    if (quizzObject.levels.length !== 0) {
+        finalizeQuizzCreation();
+    }
 }
 
 
+function finalizeQuizzCreation() {
+    //essa função tem que retirar tela 3 de quizz da tela, colocar tela 4 de quizz
+    //enviar pro servidor o objeto do quizz
+    sendQuizzToServer(quizzObject);
+}
 
+function sendQuizzToServer(sentQuizz) {
+	axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", sentQuizz)
+		.then(response => {
+			let userID = JSON.stringify(sentQuizz)
+			localStorage.setItem(response.data.id.toString(), userID)
+			let userKey = "grupo3KL" + response.data.id.toString()
+			localStorage.setItem(userKey, response.data.key.toString())
+		})
+}

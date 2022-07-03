@@ -3,7 +3,7 @@ let selectedQuizz;
 buscarquizz();
 
 function buscarquizz() {
-    const promessa = axios.get("https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes");
+    const promessa = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
     promessa.then(dadosVoltou);
 }
 function dadosVoltou(resposta) {
