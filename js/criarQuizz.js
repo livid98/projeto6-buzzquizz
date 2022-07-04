@@ -1,8 +1,8 @@
 //botão criar Quizz - redireciona pra pagina criar quizz
 function createQuizz() {
-    document.querySelector(".conteudo").style.display = "none"; // Seleciona classe .conteudo e adiciona "Display: none" no css
-    document.querySelector(".seusquizzes").style.display = "none";
-    document.querySelector(".quizzes").style.display = "none";
+    document.querySelector(".conteudo").classList.add("hidden") 
+    document.querySelector(".seusquizzes").classList.add("hidden")
+    document.querySelector(".quizzes").classList.add("hidden")
     document.querySelector(".create-quizz-page").classList.remove("escondido");
     document.querySelector(".create-quizz-page1").classList.remove("escondido");
     // remove a classe "escondido" que estava junto com a classe .create-quizz-page1
@@ -57,7 +57,7 @@ function createQuestions(){
     //CRIAR PERGUNTA 1 COM OS INPUTS NA TELA
     renderQuestions.innerHTML +=`
     <div id="questionNumber${1}" data-identifier="question">
-        <p>Pergunta ${1}</p>
+        <p class="stylePergunta">Pergunta ${1}</p>
         <div class="questions-box">
             <input class="question-text" type="text" placeholder="Texto da pergunta" />
             <input class="question-color" type="color" placeholder="Cor de fundo da pergunta" />
@@ -89,7 +89,7 @@ function createQuestions(){
         <div id = "questionNumber${i+2}" data-identifier="question">
             <div class="nextQuestion" data-identifier="expand">
                 <div class="newQuestion">
-                    <p>Pergunta ${i+2}</p>
+                    <p class="newQuestionPergunta">Pergunta ${i+2}</p>
                     <ion-icon name="create-outline" onclick="editQuestion(this,'questionNumber${i+2}')"></ion-icon>
                 </div>
             
@@ -207,7 +207,6 @@ function editQuestion(question) {
 
     // COLOCAR QUESTÕES DENTRO DO OBJETO DAS PERGUNTAS E RESPOSTAS DO QUIZZ
     for (let x = 0; x < quantityQuizz.questions; x++) {
-        console.log(x)
         let questionObject = {title: '', color: '', answersList: []};
         //Respostas das questões 1 estão em divs filhas diferentes das demais questões
         if(x == 0){
@@ -258,12 +257,11 @@ function editQuestion(question) {
             }}
 
 
-            else if (x==1 || x ==2 || x==3){
+            else if (x==1 || x ==2 || x==3 || x == 4 || x == 5 || x==6 || x ==7 || x==8 || x == 9 || x == 10 || x==11 || x ==12 || x==13 || x == 14 || x == 15){
             let tituloPergunta = document.getElementById(`questionNumber${x+1}`).childNodes[1].childNodes[3].childNodes[1].childNodes[1];
             questionObject.title = tituloPergunta.value;
             let corDaPergunga = document.getElementById(`questionNumber${x+1}`).childNodes[1].childNodes[3].childNodes[1].childNodes[3];
             questionObject.color = corDaPergunga.value;
-                console.log(questionObject.title)
 
             let RespostaCorreta = document.getElementById(`questionNumber${x+1}`).childNodes[1].childNodes[3].childNodes[5].childNodes[1].value;
             let LinkRespostaCorreta = document.getElementById(`questionNumber${x+1}`).childNodes[1].childNodes[3].childNodes[5].childNodes[3].value;
@@ -319,22 +317,13 @@ function createLevels(){
     document.querySelector(".create-quizz-page2").classList.add("escondido");
     const renderCreateLevel = document.querySelector(".create-quizz-page3")
     renderCreateLevel.classList.remove("escondido");
-    renderCreateLevel.innerHTML += `
-        <p>Agora, decida os níveis!</p>
-        <div id="level${1}">
-            <p>Nível ${1}</p>
-            <input class="level-name" placeholder="Título do nível" type="text" />
-            <input class="media" placeholder="% de acerto mínima" type="number" />
-            <input class="url-image-level" placeholder="URL da imagem do nível" type="url" />
-            <input class="text-description-level" placeholder="Descrição do nível" type="text" />
-        </div>`;
         
-        for (let i = 0; i < (quantityQuizz.levels - 1); i++) {
+        for (let i = 0; i < (quantityQuizz.levels); i++) {
         renderCreateLevel.innerHTML +=`
-        <div id="numberLevel${i+2}">
-            <div class ="namelevel">
-                <p>Nível ${i+2}</p>
-                <ion-icon name="create-outline" onclick="editlevel(this, 'level${i+2}')"></ion-icon>
+        <div id="numberLevel${i+1}" class="organizeLevelmore">
+            <div class ="namelevel organizeLevel">
+                <p>Nível ${i+1}</p>
+                <ion-icon name="create-outline" onclick="editlevel(this, 'level${i+1}')"></ion-icon>
             </div>
             <div class="inputsLevelHidden escondido">
                 <input class="level-name" placeholder="Título do nível" type="text" />
@@ -372,88 +361,78 @@ function editlevel(elemento){
         LevelDescription = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[7].value;
 */
 
-function finishQuizz() {
-    // checkar itens
+    function finishQuizz() {
+        let testLevel = { length: 0, porcentLevel: 0, imgLevelItem: 0, textDescriptionCaracter: 0, levelzero: 0};
+        for (let l = 1; l <= quantityQuizz.levels; l++) {
+            let levelObject = { title: null, image: null, text: null, porcentLevel: null};
+    
+            levelObject.title = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[1].value;
+            levelObject.porcentLevel = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[3].value;
+            levelObject.image = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[5].value;
+            levelObject.text = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[7].value;
+    
+            quizzObject.levels.push(levelObject);
+        }
+    
+        quizzObject.levels.forEach((level) => {
+            if (testLevel.length === 0 && level.title.length < 10) {
+                alert("O titulo do nível deve no mínimo 10 caracteres");
+                quizzObject.levels = [];
+                testLevel.length++;}
 
-    let verfication = {length: 0, porcentLevel: 0, imageLevel: 0, quantMinDescription: 0, levelzero: 0};
-
-    quizzObject.levels.forEach((level) => {
-        if (verfication.length == 0 && level.title.length < 10) {
-            alert("O titulo do nivel deve ter no mínimo 10 caracteres");
-            quizzObject.levels = [];
-            verfication.length++;}
-
-        else if (verfication.porcentLevel == 0 && (level.porcentLevel < 0) || (level.porcentLevel > 100) || (level.porcentLevel === '')) {
-            alert("O valor inserido foi invalido. A % de acerto varia entre 0 e 100");
-            quizzObject.levels = [];
-            verfication.porcentLevel++;}
-
-        else if (verfication.levelzero == 0 && !level.porcentLevel.includes(0)) {
-            alert("Um dos níveis deve ter o valor 0");
-            quizzObject.levels = [];
-            verfication.levelzero++;}
-
-        else if (verfication.imageLevel == 0 && !(checkUrl(level.image))) {
-            alert("A imagem deve ser em formato link Url");
-            quizzObject.levels = [];
-            verfication.imageLevel++;}
-
-        else if (verfication.quantMinDescription == 0 && level.description.length < 30) {
-            alert("A descrição do nível deve ter no minimo 30 caracteres");
-            verfication.quantMinDescription++;
-            quizzObject.levels = [];}
-    })
-
-    //colocar valores dos inputs nos objetos
-   
-    for (let l = 1; l <= quantityQuizz.levels; l++) {
-        let levelObject = {title: null, image: null, porcentLevel: null, description: null};
-
-       if (l == 0){
-        let LevelName = document.getElementById(`level${l}`).childNodes[3].value;
-        let PercentualMedia = document.getElementById(`level${l}`).childNodes[5].value;
-        let ImageLevelItem = document.getElementById(`level${l}`).childNodes[7].value;
-        let LevelDescription = document.getElementById(`level${l}`).childNodes[9].value;
-
-        levelObject.title = LevelName;
-        levelObject.image = ImageLevelItem;
-        levelObject.porcentLevel = PercentualMedia;
-        levelObject.description = LevelDescription;
-         
-       }
-       else {
-        LevelName = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[1].value;
-        PercentualMedia = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[3].value;
-        ImageLevelItem = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[5].value;
-        LevelDescription = document.getElementById(`numberLevel${l}`).childNodes[3].childNodes[7].value;
-
-        levelObject.title = LevelName;
-        levelObject.image = ImageLevelItem;
-        levelObject.porcentLevel = PercentualMedia;
-        levelObject.description = LevelDescription; 
-       }
-
-       quizzObject.levels.push(levelObject);
+            if ((level.porcentLevel < 0) || (level.porcentLevel > 100) || (level.porcentLevel === '') && testLevel.porcentLevel === 0) {
+                alert("Os niveis devem variar entre 0 e 100");
+                quizzObject.levels = [];
+                testLevel.porcentLevel++;
+            }
+            if (!(checkUrl(level.image)) && testLevel.imgLevelItem === 0) {
+                alert("A imagem deve ser em formato link URL");
+                quizzObject.levels = [];
+                testLevel.imgLevelItem++;
+                
+            }
+            if (level.text.length < 30 && testLevel.textDescriptionCaracter === 0) {
+                alert("A descrição de cada nível deve ter no mínimo 30 caracteres");
+                quizzObject.levels = [];
+                testLevel.textDescriptionCaracter++;
+                
+            }
+            if (!level.porcentLevel.includes(0) && testLevel.levelzero == 0) {
+                alert("Deve existir o nível 0, para quem n acerta nada");
+                quizzObject.levels = [];
+                testLevel.levelzero++;
+            }
+        })
+        if (quizzObject.levels.length !== 0) {
+            finalizeQuizzCreation();
+        }
+    
     }
-
-    if (quizzObject.levels.length !== 0) {
-        finalizeQuizzCreation();
-    }
-}
-
 
 function finalizeQuizzCreation() {
     //essa função tem que retirar tela 3 de quizz da tela, colocar tela 4 de quizz
     //enviar pro servidor o objeto do quizz
     sendQuizzToServer(quizzObject);
+    document.querySelector(".create-quizz-page3").classList.add("escondido");
+    document.querySelector(".create-quizz-page4").classList.remove("escondido");
+    document.querySelector(".imgquizzfinalizado").innerHTML +=`
+    <img src="${quizzObject.image}" alt="">`;
+   
 }
 
-function sendQuizzToServer(sentQuizz) {
-	axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", sentQuizz)
+function goToHome(){
+    document.querySelector(".create-quizz-page").classList.add("escondido");
+    document.querySelector(".conteudo").classList.remove("hidden");
+    document.querySelector(".seusquizzes").classList.remove("hidden");
+    document.querySelector(".quizzes").classList.remove("hidden");
+}
+
+function sendQuizzToServer(quizzCreated) {
+	axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizzCreated)
 		.then(response => {
-			let userID = JSON.stringify(sentQuizz)
-			localStorage.setItem(response.data.id.toString(), userID)
-			let userKey = "grupo3KL" + response.data.id.toString()
-			localStorage.setItem(userKey, response.data.key.toString())
+			let IDUsuario = JSON.stringify(quizzCreated)
+			localStorage.setItem(response.data.id.toString(), IDUsuario)
+			let key = "3kl" + response.data.id.toString()
+			localStorage.setItem(key, response.data.key.toString())
 		})
 }

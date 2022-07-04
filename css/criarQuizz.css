@@ -1,24 +1,63 @@
 /*QUIZ PAGINA CRIAR PERGUNTAS*/
 .create-quizz-page {
     padding-top: 71px;
-    position: relative;
+    position: absolute;
     background-color: #E5E5E5;
     width: 100%;
-    height: 100%;
+    height: 100vh;;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    
 }
+.create-quizz-page1, .create-quizz-page3{
+    position: absolute;
+    width: 40%;
+    margin-top: 23px;
+    align-items: center;
 
-.quizz-data, .create-questions {
+}
+.quizz-data{
     margin-top: 27px;
     height: 256px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;  
 }
-.quizz-data input, .questions-box input, .right-answer-box input, .wrong-ansewer input, .level input {
-    width: 564px;
+
+.create-questions {
+    position: relative;
+    margin-top: 27px;
+    height: 256px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;   
+}
+
+.organizeLevelmore{
+    position: relative;
+    margin-top: 27px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+
+.right-answer-box, .wrong-answer{
+    margin-top: 10px;
+}
+.stylePergunta{
+    margin-top: 10px;
+}
+
+
+
+
+.quizz-data input, .questions-box input, .right-answer-box input, .wrong-answer input, .create-quizz-page3 input{
+    width: 100%;
     height: 46px;
     margin-bottom: 9px;
     padding-left: 14px;
@@ -30,42 +69,57 @@
     border: 1px solid #D1D1D1;
     box-sizing: border-box;
 }
+
 .create-questions{
     padding-top: 28px;
     width: 100%;
     height: 100%;
 }
 
-.create-questions p{
-    margin-top: 20px;
+.create-questions p, .create-quizz-page3 p{
+    margin-bottom: 17px;
     font-size: 20px;
     font-weight: 700;
     color: black;
 }
 
-.newQuestion p{
+.newQuestion p, .namelevel p{
     font-size: 20px;
     font-weight: 700;
     color: black;
 }
+
 .newQuestion {
-    width: 564px;
+    width: 300%;
     height: 74px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.newQuestion ion-icon{
+.namelevel{
+    position: relative;
+    width: 100%;
+    height: 74px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 27px;
+    display: flex;
+}
+
+.newQuestion ion-icon, .namelevel ion-icon{
     color: #000000;
     height: 23px;
     width: 26px;
 }
-.newQuestion ion-icon:hover{
+
+.newQuestion ion-icon:hover, .namelevel ion-icon:hover{
     cursor: pointer;
 }
-.questions-box, .right-ansewer-box, .wrong-ansewer{
+
+.questions-box div, .right-ansewer-box div, .wrong-ansewer div{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-top: 12px;
 }
 
@@ -76,23 +130,26 @@
     align-items: center;
     justify-content: center;
 }
+.create-quizz-page4{}
 
 .create-quizz-page1 h1, .create-quizz-page2 h1, .create-quizz-page3 h1, .create-quizz-page4 h1{
-    margin-top: 71px;
+    margin-top: 23px;
     font-size: 23px;
     font-weight: 700;
     color: #000000;
 }
 
 
+
+
+/*BOTOES*/
 .create-quizz-page1 button, .create-quizz-page2 button, .create-quizz-page3 button, .create-quizz-page4 button, .create-questions button{
     background: #EC362D;
     height: 54px;
-    width: 369px;
+    width: 80%;
     text-align: center;
     border: #EC362D;
     border-radius: 15px;
-    margin-top: 85px;
     font-size: 18px;
     font-weight: 400;
     color: white;
@@ -112,6 +169,23 @@ button:hover{
     font-weight: 400;
     align-items: center;
     justify-content: center;
+}
+
+.imgquizzfinalizado img{
+    width:40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imgquizzfinalizado{
+    width:40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.espaçoaqui{
+    height: 17px;
 }
 
 /*ESCONDER ELEMENTOS*/
